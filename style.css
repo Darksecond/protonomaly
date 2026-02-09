@@ -158,12 +158,27 @@ body {
         "footer main";
 
     overflow: hidden;
+
+    @media (width <= 1100px) {
+        grid-template-columns: auto;
+        grid-template-rows: 1fr auto min-content;
+        grid-template-areas:
+            "header"
+            "main"
+            "footer";
+
+        overflow: inherit;
+    }
 }
 
 main {
     grid-area: main;
     overflow: scroll;
     scrollbar-gutter: stable;
+
+    @media (width <= 1100px) {
+        overflow: inherit;
+    }
 }
 
 header {
