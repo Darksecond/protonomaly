@@ -1,0 +1,196 @@
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("fonts/SpaceGrotesk-VariableFont_wght.ttf")
+        format("truetype-variations");
+    font-weight: 300 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("fonts/SpaceMono-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("fonts/SpaceMono-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("fonts/SpaceMono-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("fonts/SpaceMono-BoldItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Manicore";
+    src: url("fonts/Manticore\ 14.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --fg: #333333;
+    --bg: #fff9f9;
+    --accent: #da0e89;
+    --accent-desaturated: #fdf0f7;
+
+    --pd: clamp(20px, 1vw, 50px);
+    --p2: calc(var(--pd) * 2);
+    --sd: calc(320px + var(--p2));
+
+    font-family: "Space Grotesk", sans-serif;
+}
+
+.monospace {
+    font-family: "Space Mono", monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: inherit;
+    font-style: inherit;
+    line-height: inherit;
+}
+
+html,
+body {
+    text-rendering: optimizeLegibility;
+    width: 100%;
+    height: 100%;
+    color: var(--fg);
+    background-color: var(--bg);
+    line-height: 1.5;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+ul {
+    list-style-type: "x";
+    list-style-position: outside;
+}
+
+li {
+    margin-left: 1rem;
+    padding-inline-start: 1ex;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+    justify-content: flex-start;
+    ul {
+        list-style: none;
+    }
+    li {
+        margin-left: 0;
+        padding-inline-start: 0;
+    }
+}
+
+a {
+    line-height: inherit;
+    text-decoration: none;
+    &:hover {
+        color: var(--bg);
+        background: var(--fg);
+    }
+}
+
+h1 {
+    font-family: "Manicore", serif;
+    font-size: 72px;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    /*margin-top: 2em;*/
+    font-size: 1.5rem;
+}
+
+h3 {
+    /*margin-top: 2em;*/
+    font-size: 1.1rem;
+}
+
+header,
+footer {
+    padding: var(--pd);
+}
+
+main {
+    padding: var(--pd);
+
+    > * {
+        max-width: 800px;
+    }
+
+    a {
+        color: var(--accent);
+    }
+}
+
+body {
+    display: grid;
+    grid-template-columns: var(--sd) 1fr;
+    grid-template-rows: 1fr min-content;
+    grid-template-areas:
+        "header main"
+        "footer main";
+
+    overflow: hidden;
+}
+
+main {
+    grid-area: main;
+    overflow: scroll;
+    scrollbar-gutter: stable;
+}
+
+header {
+    grid-area: header;
+}
+
+footer {
+    grid-area: footer;
+}
+
+.spacing {
+    & > :not(:last-child) {
+        margin-bottom: 1rem;
+    }
+}
+
+.double-spacing {
+    & > :not(:last-child) {
+        margin-bottom: 2rem;
+    }
+}
+
+.feed {
+    padding-left: var(--pd);
+    border-left: 1px var(--fg) solid;
+}
+
+article h2 {
+    margin: var(--pd) 0 var(--pd) 0;
+}
