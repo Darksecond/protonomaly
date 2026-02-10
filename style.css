@@ -48,9 +48,9 @@
 
 :root {
     --fg: #333333;
-    --bg: #fff9f9;
+    --bg: #fffcfc;
     --accent: #da0e89;
-    --accent-desaturated: #fdf0f7;
+    --accent-desaturated: oklch(from var(--accent) l 0.05 h);
 
     --pd: clamp(20px, 1vw, 50px);
     --p2: calc(var(--pd) * 2);
@@ -114,6 +114,11 @@ a {
         color: var(--bg);
         background: var(--fg);
     }
+
+    &[aria-current="page"] {
+        text-decoration: line-through;
+        text-decoration-thickness: 0.1em;
+    }
 }
 
 h1 {
@@ -173,7 +178,7 @@ body {
 
 main {
     grid-area: main;
-    overflow: scroll;
+    overflow: auto;
     scrollbar-gutter: stable;
 
     @media (width <= 1100px) {
@@ -208,4 +213,80 @@ footer {
 
 article h2 {
     margin: var(--pd) 0 var(--pd) 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--pd);
+
+    .spacing & {
+        margin-top: var(--pd);
+        margin-bottom: var(--pd);
+    }
+}
+
+img {
+    width: 100%;
+    box-sizing: content-box;
+    display: block;
+
+    &.cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &.hover:hover {
+        opacity: 0.8;
+        cursor: pointer;
+    }
+}
+
+#lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 200;
+    user-select: none;
+
+    #close {
+        position: absolute;
+        top: 0;
+        right: var(--pd);
+        font-size: 30px;
+        cursor: pointer;
+        height: 10px;
+        color: white;
+    }
+
+    #lightbox-image {
+        margin: auto;
+        height: auto;
+        width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+
+dl {
+    dt {
+        color: var(--accent-desaturated);
+        text-transform: uppercase;
+        margin-bottom: 0.5ex;
+    }
+}
+
+#title {
+    font-size: 48px;
+    font-family: "Manicore", serif;
+    margin-bottom: 2rem;
+}
+
+.desaturated {
+    color: var(--accent-desaturated);
 }
